@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cast Vote</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <h1>Cast Your Vote</h1>
+    <form id="voteForm" action="/vote" method="post">
+      Voter ID: <input type="text" name="voterId" required /><br />
+      Party:
+      <select name="party" required>
+        <option value="Party A">Party A</option>
+        <option value="Party B">Party B</option>
+        <option value="Party C">Party C</option></select
+      ><br />
+      <input type="submit" value="Cast Vote" />
+    </form>
+    <div id="message"></div>
+    <script>
+      document
+        .getElementById("voteForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const formData = new FormData(this);
+          fetch("/vote", {
+            method: "POST",
+            body: new URLSearchParams(formData),
+          })
+            .then((response) => response.text())
+            .then((data) => {
+              document.getElementById("message").innerHTML = data;
+            })
+            .catch((error) => {
+              document.getElementById("message").innerHTML =
+                "An error occurred: " + error.message;
+            });
+        });
+    </script>
+  </body>
+</html>

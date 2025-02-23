@@ -1,0 +1,8 @@
+com\evoting\Vote.class
+com\evoting\App.class
+com\evoting\Database.class
+com\evoting\Voter.class
+com\evoting\Blockchain.class
+com\evoting\StringUtil.class
+com\evoting\Block.class
+com\evoting\Server.class
